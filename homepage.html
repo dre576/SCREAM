@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <title>
+            SCREAM
+        </title>        
+        <meta name="author" content="Andrea Johnson and Nicole Hermoso" />        
+        <!--meta http-equiv="refresh" content="5" /-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Main CSS file -->
+        <!--using bootstrap as my external style sheet-->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+
+        <!-- Main JS file -->
+        <script src ="./js/jquery.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        
+        <!--javascript-->
+        <script type="text/javascript">
+            
+        </script>
+    </head>
+    
+    <body>
+        <div class="panel">
+            <h1>SCREAM!</h1>
+        </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">SCREAM</a>
+              </div>
+              <div>
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#">HOME</a></li>
+                  <li><a href="aboutUs.html">ABOUT US</a></li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+        
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-default" style="background-color: lightgrey">
+                        <div class="panel-body">
+                            <h4>What kind of food are you looking for?</h4>
+                            <select id = "type">
+                                <option value="defaultVal">----------------</option>
+                                
+                            </select>
+                           <br/>
+                           <br/>
+                           <h4>What window of time are you looking at?</h4>
+                           <select id = "hours">
+                                <option value="defaultVal">----------------</option>
+                                
+                            </select> 
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-default" style="background-color: lightgrey">
+                        <div class="panel-body">
+                            <h4>How far will you go for your food?</h4>
+                           <select id = "distance">
+                                <option value="defaultVal">----------------</option>
+                                
+                            </select>
+                           <br/>
+                           <br/>
+                           <h4>How long are you willing to wait?</h4>
+                           <select id = "waittime">
+                                <option value="defaultVal">----------------</option>
+                                
+                            </select> 
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="panel panel-default" style="background-color: lightgrey">
+                        <div class="panel-body">
+                          <h4>How much are you willing to spend?</h4>
+                          <select id = "cost">
+                                <option value="defaultVal">----------------</option>
+                                
+                            </select>
+                           <br/>
+                           <br/>
+                           <h4>How many stars?</h4>
+                           <select id = "rating">
+                                <option value="defaultVal">----------------</option>
+                                <option value="fiveS">5 stars</option>
+                                <option value="fourS">4 stars</option>
+                                <option value="threeS">3 stars</option>
+                                <option value="twoS">2 stars</option>
+                                <option value="oneS">1 star</option>
+                                <option value="noS">no stars</option>
+                                
+                            </select> 
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!--
+        WILL USE JAVASCRIPT OR JQUERY TO ADD FUNTIONALITY TO THE BUTTONS,
+        SEARCH WILL DIRECT TO searchResults.html
+        RANDOM WILL DIRECT TO  moreinfo.html
+        BOTH OF THESE PAGES NEED TO BE DYNAMICALLY GENERATED BASED ON USER'S CHOICES
+        -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default" style="background-color: lightgrey">
+                        <div class="panel-body" align = 'center'>
+                            <button type="button" class="btn btn-success btn-lg" id= 'search'>SEARCH FOR FOOD</button>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default" style="background-color: lightgrey">
+                        <div class="panel-body" align = 'center'>
+                           <button type="button" class="btn btn-primary btn-lg" id='random'>RANDOM</button>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        
+    </body>
+</html>
