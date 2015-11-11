@@ -93,6 +93,18 @@
             
             $.jStorage.set("searchResults",searchResult);
         }
+        
+        //this function would be expanded if we were making something for a bigger city with more choices
+        //so that people could choose from the dropdowns and randomize from those choices
+        //this still could be done here if we first call searchResults to get all the restaurants that
+        //fit a certain description, however there are so few choices here it seems unecessary
+        function randomRestaurant(){
+            var restId = Math.floor((Math.random() * result.length) + 1); //chooses a random restaurant ID
+            //if IDs are being assigned in a different way, would probably use a for loop
+            //to find the restaurant with the generated ID
+            var selected = result[restId-1]; //ids are 1 greater than their index in the results array
+            $.jStorage.set("finalResult", selected); 
+        }
 
         </script>
         
@@ -104,6 +116,7 @@
                     $(location).attr('href', 'searchResults.html'); 
                 });
                 $("#Random").click(function(){
+                    randomRestaurant();
                     $(location).attr('href', 'moreInfo.html'); 
                 });
             });
