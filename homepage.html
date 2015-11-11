@@ -74,12 +74,12 @@
             for(var i = 0; i<restaurantData.length;i++){
                 var restaurant = restaurantData[i];
                 if (restaurant.FoodType==$("#FoodType").val() || "defaultVal"==$("#FoodType").val()) {
-                    
-                    if (restaurant.Cost==$("#Cost").val() || "defaultVal"==$("#Cost").val()) {
+                    if (restaurant.Cost==$("#Cost").val() || "DefaultCost"==$("#Cost").val()) {                     
                         if (restaurant.Location==$("#Location").val() || "defaultVal"==$("#Location").val()) {
-                            if (restaurant.Rating==$("#Rating").val() || "defaultVal"==$("#Rating").val()) {
-                               if (restaurant.WaitTime==$("#WaitTime").val() || "defaultVal"==$("#WaitTime").val()) {
+                            if (restaurant.Rating==$("#Rating").val()) {
+                               if (restaurant.WaitTime==$("#WaitTime").val()) {
                                     searchResult.push(restaurant); //if all the criteria is met
+                                    
                                     //pushes the restaurant onto the search result, which will be stored in
                                     //jStorage to be called from the next page
                                 }
@@ -90,6 +90,7 @@
                 }
                
             }
+            
             $.jStorage.set("searchResults",searchResult);
         }
 
@@ -243,9 +244,9 @@
                             </div>
                             <select id = "Cost">
                                   <option value="DefaultCost">----------------</option>
-                                  <option value="HighCost">$$$</option>
-                                  <option value="MedCost">$$</option>
-                                  <option value="LowCost">$</option>
+                                  <option value="$$$">$$$</option>
+                                  <option value="$$">$$</option>
+                                  <option value="$">$</option>
                                      
                             </select>
                             <br/>

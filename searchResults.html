@@ -16,10 +16,48 @@
         <!-- Main JS file -->
         <script src ="./js/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/json2.js"></script>
+        <script src="./js/jStorage.js"></script>
         
-        <!--javascript-->
-        <script type="text/javascript">
+        <!--jQuery-->
+        <script>
+            var results = $.jStorage.get("searchResults");
+            window.items = new Array();
             
+            $(document).ready(function(){
+                if (results!=null || results.length!=0) {
+                    items = results;
+                }
+                else{
+                    $("#errSearch").text("NO RESTAURANTS MATCH YOUR CRITERIA PLEASE TRY AGAIN BY GOING BACK TO HOME");
+                    $("#errSearch").css("color","red");
+                }
+                
+                //this function allows user to get more info on a specific restaurant
+                window.moreInfo = function moreInfo(index){
+                    var selected = items[index];
+                    $.jStorage.set("finalResult", selected);
+                    $(location).attr('href', 'moreInfo.html'); 
+                }
+                
+                //right now all that is being displayed is the name of the restaurant, more can be done
+                window.displayRestaurants = function displayRestaurants() {
+                    var text =  "<div class='container' style=\"background-color: lightgrey\">";
+                    var initial_index = 0;
+                    for (var i = 0; i < items.length; i++) { //iterates thru top level
+                        initial_index++;
+                        text = text + "<p>";
+                        text = text + items[i].Name;  //items is a 1D
+                        text = text + "</p>";
+                        text = text + "<button id=\"moreInformation\" type=\"button\" onclick=\"moreInfo('" + i + "')\">More Info</button>";
+                        text = text + "<br/>----------------------------------------------------------------"
+                    }
+                    text = text + "</div>";
+                    document.getElementById("restaurants").innerHTML = text;
+
+                }
+                displayRestaurants(); //called anytime items change
+            });
         </script>
     </head>
     
@@ -40,8 +78,10 @@
               </div>
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" id="restaurants">
             list of restaurants and link to extra information page
+        </div>
+        <div id="errSearch">
         </div>
         
     </body>

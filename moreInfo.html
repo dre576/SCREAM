@@ -16,10 +16,30 @@
         <!-- Main JS file -->
         <script src ="./js/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/json2.js"></script>
+        <script src="./js/jStorage.js"></script>
         
-        <!--javascript-->
-        <script type="text/javascript">
+        <!--jQuery-->
+        <script>
+            window.result = $.jStorage.get("finalResult");
             
+            $(document).ready(function(){
+            //right now all that is being displayed is the name of the restaurant, more can be done
+                window.displayRestaurantInfo = function displayRestaurantInfo() {
+                    var text =  "";
+                    text = text + "<p>";
+                    text = text +"<h1>"+ result.Name+"</h1> ";
+                    text = text +"<h2>"+ result.FoodType+"</h2> ";
+                    text = text +"<h3>Cost: "+ result.Cost+"  </h3><h3> Rating: "+result.Rating+"</h3> ";
+                    text = text +"<h3>Phone: "+ result.Phone+" </h3><h3>  Address: "+result.Address+"</h3> ";
+                    text = text +"<h3>Average Wait Time: "+ result.WaitTime+" </h3><h3>  Open During: "+result.TimeOfDay+"</h3> ";
+                    text = text + "</p>";
+                    text = text + "";
+                    document.getElementById("restaurant").innerHTML = text;
+
+                }
+                displayRestaurantInfo(); 
+            });
         </script>
     </head>
     
@@ -54,7 +74,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body" align = 'center'>
+                        <div class="panel-body" align = 'center' id="restaurant">
                            Extra information about restaurant
                         </div>
                     </div>
