@@ -16,166 +16,278 @@
         <!-- Main JS file -->
         <script src ="./js/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/json2.js"></script>
+        <script src="./js/jStorage.js"></script>
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         
         <!--javascript-->
-        <script type="text/javascript">
+        <script>
+        var result=[];
+        var matches=[];
+        $.get('Data2.txt', function(data){
+            var Lines = data.split("\r");
+            console.log(Lines);
+            //localStorage.setItem('RestaurantData',tsvJSON(Lines));
+            $.jStorage.set("RestaurantData",tsvJSON(Lines));
+        }, "text");
+        
+        function tsvJSON(tsv){
+            for(var i=1; i<tsv.length;i++){
+                var info = tsv[i].split("\t");
+                var obj = {
+                    ID: info[0],
+                    Name: info[1],
+                    Cost: info[2],
+                    Address: info[3],
+                    Phone: info[4],
+                    WaitTime: info[5],
+                    Rating: info[6],
+                    TimeOfDay: info[7],
+                    Location: info[8],
+                    FoodType: info[9]
+                    };
+                console.log(obj.ID);
+                console.log(obj.Name);
+                console.log(obj.Cost);
+                console.log(obj.Address);
+                console.log(obj.Phone);
+                console.log(obj.WaitTime);
+                console.log(obj.Rating);
+                console.log(obj.TimeOfDay);
+                console.log(obj.Location);
+                console.log(obj.FoodType);
+                //Just checking that the file is being read in correctly
+                
+                result.push(obj);
+                //Now everything is stored in local storage as Restuarant Data
+            };
             
+            return result;
+
+        }
+        
+        function searchForFood(){
+            var restaurantData = $.jStorage.get("RestaurantData");
+            var searchResult = [];
+            for(var i = 0; i<restaurantData.length;i++){
+                var restaurant = restaurantData[i];
+                if (restaurant.FoodType==$("#FoodType").val() || "defaultVal"==$("#FoodType").val()) {
+                    
+                    if (restaurant.Cost==$("#Cost").val() || "defaultVal"==$("#Cost").val()) {
+                        if (restaurant.Location==$("#Location").val() || "defaultVal"==$("#Location").val()) {
+                            if (restaurant.Rating==$("#Rating").val() || "defaultVal"==$("#Rating").val()) {
+                               if (restaurant.WaitTime==$("#WaitTime").val() || "defaultVal"==$("#WaitTime").val()) {
+                                    searchResult.push(restaurant); //if all the criteria is met
+                                    //pushes the restaurant onto the search result, which will be stored in
+                                    //jStorage to be called from the next page
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+               
+            }
+            $.jStorage.set("searchResults",searchResult);
+        }
+
         </script>
         
         <!--jquery-->
         <script>
             $(document).ready(function(){
-                $("#search").click(function(){
+                $("#Search").click(function(){
+                    searchForFood();
                     $(location).attr('href', 'searchResults.html'); 
                 });
-                $("#random").click(function(){
+                $("#Random").click(function(){
                     $(location).attr('href', 'moreInfo.html'); 
                 });
             });
            
         </script>
 
+        <style>
+            .MainPage{
+                padding:0;
+                margin:0;
+                top:0;
+                left:0;
+                width: 100%;
+                height: 100%;
+                background:#EAFDE6;
+            }
+            .FirstColumn,.SecondColumn,.ThirdColumn,.FirstButtonPanel,.SecondButtonPanel{
+                background-color: lightgrey
+            }
+            h1,h4{
+                text-align: left;
+            }
+            #Search{
+                background-color: #519548;
+                color: white;
+                font-face: "Arial";
+            }
+            #Random{
+                background-color: #1B676B;
+                color: white;
+            }
+            .InverseNav,.NavBar{
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+            }
+           
+        </style>
 
     </head>
     
     <body>
+    <div class="MainPage">
         <div class="panel">
             <h1>SCREAM!</h1>
         </div>
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse" id="InverseNav">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">SCREAM</a>
+                <a class="navbar-brand" href="#">SCREAM!</a>
               </div>
               <div>
-                <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">HOME</a></li>
-                  <li><a href="aboutUs.html">ABOUT US</a></li>
+                <ul class="nav navbar-nav" id="NavBar">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="aboutUs.html">About Us</a></li>
                 </ul>
               </div>
             </div>
         </nav>
         
         
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body">
-                            <h4>What kind of food are you looking for?</h4>
-                            <select id = "type">
-                                <option value="defaultVal">----------------</option>
-                                <option value="asian">Asian</option>
-                                <option value="irish">Irish</option>
-                                <option value="burgers">Burgers</option>
-                                <option value="mex">Mexican</option>
-                                <option value="diner">Diner</option>
-                                <option value="greek">Greek</option>
-                                <option value="italian">Italian</option>
-                                
-                            </select>
-                           <br/>
-                           <br/>
-                           <h4>What window of time are you looking at?</h4>
-                           <select id = "timeOfDay">
-                                <option value="defaultVal">----------------</option>
-                                <option value="LATE">LATE</option>
-                                <option value="evening">evening</option>
-                                <option value="daytime">day</option>
-                                <option value="morning">morning</option>
-                                
-                            </select> 
-                           
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body">
-                            <h4>How far will you go for your food?</h4>
-                           <select id = "distance">
-                                <option value="defaultVal">----------------</option>
-                                <option value="fiveMiles">5 miles</option>
-                                <option value="threeMiles">3 miles</option>
-                                <option value="oneMile">1 mile</option>
-                                
-                            </select>
-                           <br/>
-                           <br/>
-                           <h4>How long are you willing to wait?</h4>
-                           <select id = "waittime">
-                                <option value="defaultVal">----------------</option>
-                                <option value="hugeWait">2 hour</option>
-                                <option value="longWait">1 hour</option>
-                                <option value="medWait">30 min</option>
-                                <option value="lowWait">15 min</option>
-                                
-                            </select> 
-                           
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body">
-                          <h4>How much are you willing to spend?</h4>
-                          <select id = "cost">
-                                <option value="defaultVal">----------------</option>
-                                <option value="highCost">$$$</option>
-                                <option value="medCost">$$</option>
-                                <option value="lowCost">$</option>
-                                
-                                
-                            </select>
-                           <br/>
-                           <br/>
-                           <h4>How many stars?</h4>
-                           <select id = "rating">
-                                <option value="defaultVal">----------------</option>
-                                <option value="fiveS">5 stars</option>
-                                <option value="fourS">4 stars</option>
-                                <option value="threeS">3 stars</option>
-                                <option value="twoS">2 stars</option>
-                                <option value="oneS">1 star</option>
-                                <option value="noS">no stars</option>
-                                
-                            </select> 
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         
-        
-        <!--
-        WILL USE JAVASCRIPT OR JQUERY TO ADD FUNTIONALITY TO THE BUTTONS,
-        SEARCH WILL DIRECT TO searchResults.html
-        RANDOM WILL DIRECT TO  moreinfo.html
-        BOTH OF THESE PAGES NEED TO BE DYNAMICALLY GENERATED BASED ON USER'S CHOICES
-        -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body" align = 'center'>
-                            <button type="button" class="btn btn-success btn-lg" id= 'search'>SEARCH FOR FOOD</button>
-                           <!--need to call change of location in function that gets calls-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body" align = 'center'>
-                           <button type="button" class="btn btn-primary btn-lg" id='random'>RANDOM</button>
-                           <!--need to call change of location in function that gets calls-->
-                        </div>
-                    </div>
-                </div>
+        <div class="container-fluid" id="DataArea">
+                <div class="col-sm-4">
+                    <div class="FirstColumn">
+                        <div class="panel-body">
+                            <br/>
+                            <div data-role="header" >
+                                <h4>Food Type</h4>
+                            </div>
+                            <select id = "FoodType">
+                                <option value="defaultVal">----------------</option>
+                                <option value="Asian">Asian</option>
+                                <option value="Burgers">Burgers</option>
+                                <option value="Diner">Diner</option>
+                                <option value="Greek">Greek</option>
+                                <option value="Irish">Irish</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Mexican">Mexican</option>
+                            </select>
+                           <br/>
+                           <br/>
+                           <div data-role="header" id="TimeHeader">
+                            <h4>Time of Day</h4>
+                           </div>
+                           <br/>
+                           <select id = "TimeOfDay">
+                                <option value="defaultVal">----------------</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Day">Day</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Late">Late</option>
+                            </select>
+                           <br/>
+                           
+                        </div><!--class="panel-body"-->
+                    </div><!--class="FirstColumn"-->
+                </div> <!--class="col-sm-4"-->
+                <div class="col-sm-4">
+                    <div class="SecondColumn">
+                        <div class="panel-body">
+                            <br/>
+                            <div data-role="header" id="LocationHeader">
+                                <h4>Location</h4>
+                            </div>
+                            
+                            <select id="Location">
+                                <option value="defaultVal">----------------</option>
+                                <option value="Broadway">Broadway</option>
+                                <option value="Brooks">Brooks</option>
+                                <option value="Downtown">Downtown</option>
+                                <option value="Higgins">Higgins</option>
+                                <option value="North Reserve">North Reserve</option>
+                                <option value="South Reserve">South Reserve</option>
+                            </select>
+                            <br/>
+                            <br/>
+                            <div data-role="header" id="WaitTimeHeader">
+                                <h4>Wait Time</h4>
+                            </div>
+                            <div 
+                            <div data-role="main" class="ui-content" id="WaitTimeSlider">
+                                  <label for="WaitTime">Minutes:</label>
+                                  <input type="range" name="WaitTime" id="WaitTime" value="30" min="15" max="90" step="15">
+                            </div>
+                            
+                        </div><!--class="panel-body"-->
+                    </div><!--class="SecondColumn"-->
+                </div><!--class="col-sm-4"-->
                 
-            </div>
+                <div class="col-sm-4">
+                    <div class="ThirdColumn">
+                        <div class="panel-body">
+                            <br/>
+                            <div data-role="header" id="CostHeader">
+                                <h4>Cost</h4>
+                            </div>
+                            <select id = "Cost">
+                                  <option value="DefaultCost">----------------</option>
+                                  <option value="HighCost">$$$</option>
+                                  <option value="MedCost">$$</option>
+                                  <option value="LowCost">$</option>
+                                     
+                            </select>
+                            <br/>
+                            <br/>
+                            
+                            <div data-role="header" id="RatingHeader">
+                              <h4>Rating</h4>
+                            </div>
+                            <div data-role="main" class="ui-content" id="RatingSlider">                                    
+                                  <label for="Stars">Stars:</label>
+                                  <input type="range" name="Stars" id="Rating" value="3" min="0" max="5" step="1">
+                            </div>
+                            
+                        </div><!--class="panel-body"-->
+                    </div><!--class="ThirdColumn"-->
+                </div><!--class="col-sm-4"-->
+                
         </div>
         
+        <br/>
+        
+        <div class="container-fluid" id="ButtonArea">
+            <!--<div class="row"-->
+                <div class="col-sm-6">
+                    <div class="FirstButtonPanel">
+                        <div class="panel-body" align = 'center'>
+                            <button type="button" id= 'Search'>Search For Food</button>
+                           <!--need to call change of location in function that gets calls-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="SecondButtonPanel">
+                        <div class="panel-body" align = 'center'>
+                           <button type="button" id='Random'>Random</button>
+                           <!--need to call change of location in function that gets calls-->
+                        </div><!-- class="panel-body"-->
+                    </div><!--class="SecondButtonPanel"-->
+                </div><!--class="col-sm-6"-->
+            <!--</div>-->
+        </div>
+    </div>    
         
         
     </body>
