@@ -202,18 +202,6 @@
                             </select>
                            <br/>
                            <br/>
-                           <div data-role="header" id="TimeHeader">
-                            <h4>Time of Day</h4>
-                           </div>
-                           <br/>
-                           <select id = "TimeOfDay">
-                                <option value="defaultVal">----------------</option>
-                                <option value="Morning">Morning</option>
-                                <option value="Day">Day</option>
-                                <option value="Evening">Evening</option>
-                                <option value="Late">Late</option>
-                            </select>
-                           <br/>
                            
                         </div><!--class="panel-body"-->
                     </div><!--class="FirstColumn"-->
@@ -237,18 +225,11 @@
                             </select>
                             <br/>
                             <br/>
-                            <div data-role="header" id="WaitTimeHeader">
-                                <h4>Wait Time</h4>
-                            </div>
-                            <div 
-                            <div data-role="main" class="ui-content" id="WaitTimeSlider">
-                                  <label for="WaitTime">Minutes:</label>
-                                  <input type="range" name="WaitTime" id="WaitTime" value="30" min="15" max="90" step="15">
-                            </div>
                             
                         </div><!--class="panel-body"-->
                     </div><!--class="SecondColumn"-->
                 </div><!--class="col-sm-4"-->
+                
                 
                 <div class="col-sm-4">
                     <div class="ThirdColumn">
@@ -267,18 +248,48 @@
                             <br/>
                             <br/>
                             
-                            <div data-role="header" id="RatingHeader">
-                              <h4>Rating</h4>
-                            </div>
-                            <div data-role="main" class="ui-content" id="RatingSlider">                                    
-                                  <label for="Stars">Stars:</label>
-                                  <input type="range" name="Stars" id="Rating" value="3" min="0" max="5" step="1">
-                            </div>
                             
                         </div><!--class="panel-body"-->
                     </div><!--class="ThirdColumn"-->
                 </div><!--class="col-sm-4"-->
                 
+                
+                
+        </div>
+        <br/>
+        <br/>
+        <div class="container-fluid">
+            <div class="col-sm-6">
+                <div class="FirstColumn">
+                    <div class="panel-body">
+                        <div data-role="header" id="WaitTimeHeader">
+                            <h4>Wait Time</h4>
+                        </div>
+                        <div 
+                        <div data-role="main" class="ui-content" id="WaitTimeSlider">
+                              <label for="WaitTime">Minutes:</label>
+                              <input type="range" name="WaitTime" id="WaitTime" value="30" min="15" max="90" step="15">
+                        </div>
+                        
+                    </div><!--class="panel-body"-->
+                </div><!--class="SecondColumn"-->
+            </div><!--class="col-sm-6"-->
+            
+            <div class="col-sm-6">
+                <div class="SecondColumn">
+                    <div class="panel-body">
+                        
+                        <div data-role="header" id="RatingHeader">
+                          <h4>Rating</h4>
+                        </div>
+                        <div data-role="main" class="ui-content" id="RatingSlider">                                    
+                              <label for="Stars">Stars:</label>
+                              <input type="range" name="Stars" id="Rating" value="3" min="0" max="5" step="1">
+                        </div>
+                        
+                    </div><!--class="panel-body"-->
+                </div><!--class="SecondColumn"-->
+            </div><!--class="col-sm-4"-->
         </div>
         
         <br/>
