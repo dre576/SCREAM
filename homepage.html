@@ -99,9 +99,11 @@
         //this still could be done here if we first call searchResults to get all the restaurants that
         //fit a certain description, however there are so few choices here it seems unecessary
         function randomRestaurant(){
+            //TODO check this produces 1-16 inclusive
             var restId = Math.floor((Math.random() * result.length) + 1); //chooses a random restaurant ID
             //if IDs are being assigned in a different way, would probably use a for loop
             //to find the restaurant with the generated ID
+            //use a dictionary instead of for loop if extending
             var selected = result[restId-1]; //ids are 1 greater than their index in the results array
             $.jStorage.set("finalResult", selected); 
         }
