@@ -35,8 +35,10 @@
                     text = text +"<h3>Average Wait Time: "+ result.WaitTime+" </h3><h3>  Open During: "+result.TimeOfDay+"</h3> ";
                     text = text + "</p>";
                     text = text + "";
+                    var photo = "";
+                    photo = "<img src=./"+result.Photo+">";
                     document.getElementById("restaurant").innerHTML = text;
-
+                    document.getElementById("restaurantphoto").innerHTML = photo;
                 }
                 displayRestaurantInfo(); 
             });
@@ -65,7 +67,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="panel panel-default" style="background-color: lightgrey">
-                        <div class="panel-body" align = 'center'>
+                        <div class="panel-body" align = 'center' id="restaurantphoto">
                             image of restaurant goes here, all info that can be chosen on
                             first page also here
                             <!--Image of restaurant goes here-->

@@ -26,7 +26,7 @@
         <script>
         var result=[];
         var matches=[];
-        $.get('Data2.txt', function(data){
+        $.get('TestData.txt', function(data){
             var Lines = data.split("\r");
             console.log(Lines);
             //localStorage.setItem('RestaurantData',tsvJSON(Lines));
@@ -46,7 +46,8 @@
                     Rating: info[6],
                     TimeOfDay: info[7],
                     Location: info[8],
-                    FoodType: info[9]
+                    FoodType: info[9],
+                    Photo: info [10]
                     };
                 console.log(obj.ID);
                 console.log(obj.Name);
@@ -58,6 +59,7 @@
                 console.log(obj.TimeOfDay);
                 console.log(obj.Location);
                 console.log(obj.FoodType);
+                console.log(obj.Photo);
                 //Just checking that the file is being read in correctly
                 
                 result.push(obj);
@@ -135,7 +137,7 @@
                 height: 100%;
                 background:#EAFDE6;
             }
-            .FirstColumn,.SecondColumn,.ThirdColumn,.FirstButtonPanel,.SecondButtonPanel{
+            .FirstColumn,.SecondColumn,.SecondColumnSlider,.ThirdColumn,.FirstColumnSlider,.FirstButtonPanel,.SecondButtonPanel{
                 background-color: lightgrey
             }
             h1,h4{
@@ -221,6 +223,7 @@
                                 <option value="Downtown">Downtown</option>
                                 <option value="Higgins">Higgins</option>
                                 <option value="North Reserve">North Reserve</option>
+                                <option value="Russell">Russell</option>
                                 <option value="South Reserve">South Reserve</option>
                             </select>
                             <br/>
@@ -228,7 +231,7 @@
                             
                         </div><!--class="panel-body"-->
                     </div><!--class="SecondColumn"-->
-                </div><!--class="col-sm-4"-->
+                </div><!--class="col-sm-4"--> 
                 
                 
                 <div class="col-sm-4">
@@ -255,17 +258,16 @@
                 
                 
                 
-        </div>
+        </div><!--id="DataArea"-->
         <br/>
         <br/>
         <div class="container-fluid">
             <div class="col-sm-6">
-                <div class="FirstColumn">
+                <div class="FirstColumnSlider">
                     <div class="panel-body">
                         <div data-role="header" id="WaitTimeHeader">
                             <h4>Wait Time</h4>
                         </div>
-                        <div 
                         <div data-role="main" class="ui-content" id="WaitTimeSlider">
                               <label for="WaitTime">Minutes:</label>
                               <input type="range" name="WaitTime" id="WaitTime" value="30" min="15" max="90" step="15">
@@ -276,7 +278,7 @@
             </div><!--class="col-sm-6"-->
             
             <div class="col-sm-6">
-                <div class="SecondColumn">
+                <div class="SecondColumnSlider">
                     <div class="panel-body">
                         
                         <div data-role="header" id="RatingHeader">
@@ -290,31 +292,29 @@
                     </div><!--class="panel-body"-->
                 </div><!--class="SecondColumn"-->
             </div><!--class="col-sm-4"-->
-        </div>
-        
+        </div><!--class"container-fluid"-->        
+        <br/>
         <br/>
         
         <div class="container-fluid" id="ButtonArea">
-            <!--<div class="row"-->
-                <div class="col-sm-6">
-                    <div class="FirstButtonPanel">
-                        <div class="panel-body" align = 'center'>
-                            <button type="button" id= 'Search'>Search For Food</button>
-                           <!--need to call change of location in function that gets calls-->
-                        </div>
+            <div class="col-sm-6">
+                <div class="FirstButtonPanel">
+                    <div class="panel-body" align = 'center'>
+                        <button type="button" id= 'Search'>Search For Food</button>
+                       <!--need to call change of location in function that gets calls-->
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="SecondButtonPanel">
-                        <div class="panel-body" align = 'center'>
-                           <button type="button" id='Random'>Random</button>
-                           <!--need to call change of location in function that gets calls-->
-                        </div><!-- class="panel-body"-->
-                    </div><!--class="SecondButtonPanel"-->
-                </div><!--class="col-sm-6"-->
-            <!--</div>-->
-        </div>
-    </div>    
+                </div><!--class="FirstButtonPanel"-->
+            </div><!--class="FirstButtonPanel"-->
+            <div class="col-sm-6">
+                <div class="SecondButtonPanel">
+                    <div class="panel-body" align = 'center'>
+                       <button type="button" id='Random'>Random</button>
+                       <!--need to call change of location in function that gets calls-->
+                    </div><!-- class="panel-body"-->
+                </div><!--class="SecondButtonPanel"-->
+            </div><!--class="col-sm-6"-->
+        </div><!--id="ButtonArea-->
+    </div><!--class="MainPage"-->    
         
         
     </body>
