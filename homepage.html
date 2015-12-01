@@ -5,13 +5,13 @@
         </title>        
         <meta name="author" content="Andrea Johnson and Nicole Hermoso" />        
         <!--meta http-equiv="refresh" content="5" /-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         
         <!-- Main CSS file -->
         <!--using bootstrap as my external style sheet-->
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="./css/bootstrap-theme.min.css"/>
 
         <!-- Main JS file -->
         <script src ="./js/jquery.min.js"></script>
@@ -19,7 +19,7 @@
         <script src="./js/json2.js"></script>
         <script src="./js/jStorage.js"></script>
         
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"></link>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         
         <!--javascript-->
@@ -29,7 +29,6 @@
         $.get('TestData.txt', function(data){
             var Lines = data.split("\r");
             console.log(Lines);
-            //localStorage.setItem('RestaurantData',tsvJSON(Lines));
             $.jStorage.set("RestaurantData",tsvJSON(Lines));
         }, "text");
         
@@ -101,7 +100,7 @@
         //this still could be done here if we first call searchResults to get all the restaurants that
         //fit a certain description, however there are so few choices here it seems unecessary
         function randomRestaurant(){
-            //TODO check this produces 1-16 inclusive
+            //TODO check this produces 1-length inclusive
             var restId = Math.floor((Math.random() * result.length) + 1); //chooses a random restaurant ID
             //if IDs are being assigned in a different way, would probably use a for loop
             //to find the restaurant with the generated ID
@@ -122,6 +121,11 @@
                 $("#Random").click(function(){
                     randomRestaurant();
                     $(location).attr('href', 'moreInfo.html'); 
+                });
+                
+                $("#about").click(function(){
+                    randomRestaurant();
+                    $(location).attr('href', 'aboutUs.html'); 
                 });
             });
            
@@ -167,23 +171,9 @@
     <div class="MainPage">
         <div class="panel">
             <h1>SCREAM!</h1>
+            <button id="about">About Us!</button>
         </div>
-        <nav class="navbar navbar-inverse" id="InverseNav">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="#">SCREAM!</a>
-              </div>
-              <div>
-                <ul class="nav navbar-nav" id="NavBar">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="aboutUs.html">About Us</a></li>
-                </ul>
-              </div>
-            </div>
-        </nav>
-        
-        
-        
+
         <div class="container-fluid" id="DataArea">
                 <div class="col-sm-4">
                     <div class="FirstColumn">

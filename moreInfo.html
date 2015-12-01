@@ -24,7 +24,7 @@
             window.result = $.jStorage.get("finalResult");
             
             $(document).ready(function(){
-            //right now all that is being displayed is the name of the restaurant, more can be done
+            //displays all restaurant info and restaurant photo
                 window.displayRestaurantInfo = function displayRestaurantInfo() {
                     var text =  "";
                     text = text + "<p>";
@@ -36,7 +36,7 @@
                     text = text + "</p>";
                     text = text + "";
                     var photo = "";
-                    photo = "<img src=./"+result.Photo+">";
+                    photo = "<img src='./images/"+result.Photo+"' width='85%'>";
                     document.getElementById("restaurant").innerHTML = text;
                     document.getElementById("restaurantphoto").innerHTML = photo;
                 }
@@ -68,8 +68,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default" style="background-color: lightgrey">
                         <div class="panel-body" align = 'center' id="restaurantphoto">
-                            image of restaurant goes here, all info that can be chosen on
-                            first page also here
+                            image of restaurant goes here
                             <!--Image of restaurant goes here-->
                         </div>
                     </div>
