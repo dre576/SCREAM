@@ -133,18 +133,31 @@
 
         <style>
             .MainPage{
+                padding:100;
+                margin:0;
+                top:50;
+                left:50;
+                width: 100%;
+                height: 100%;
+                background:#EAFDE6;
+            }
+            .col-sm-5,.col-sm-2{
                 padding:0;
                 margin:0;
                 top:0;
                 left:0;
                 width: 100%;
                 height: 100%;
-                background:#EAFDE6;
+                background-color: #EAFDE6
+            }
+            
+            h1{
+                text-align: center;
             }
             .FirstColumn,.SecondColumn,.SecondColumnSlider,.ThirdColumn,.FirstColumnSlider,.FirstButtonPanel,.SecondButtonPanel{
                 background-color: lightgrey
             }
-            h1,h4{
+            h4{
                 text-align: left;
             }
             #Search{
@@ -195,7 +208,11 @@
     <body>
     <div class="MainPage">
         <div class="panel">
-            <h1>SCREAM!</h1>
+            <div class='col-sm-5'></div>
+            <div class='col-sm-2'>
+                <h1>SCREAM!</h1>
+            </div>
+            <div class='col-sm-5'></div>
             <button id="about">About Us!</button>
         </div>
 
