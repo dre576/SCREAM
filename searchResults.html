@@ -42,15 +42,15 @@
                 
                 //right now all that is being displayed is the name of the restaurant, more can be done
                 window.displayRestaurants = function displayRestaurants() {
-                    var text =  "<div class='container' style=\"background-color: lightgrey\">";
+                    var text =  "<div class='container'>";
                     var initial_index = 0;
                     for (var i = 0; i < items.length; i++) {
                         initial_index++;
-                        text = text + "<p>";
+                        text = text + "<div class='container' style=\"background-color: lightgrey\"><p><h1>";
                         text = text + items[i].Name;  //items is a 1D
-                        text = text + "</p>";
+                        text = text + "</h1></p>";
                         text = text + "<button id=\"moreInformation\" type=\"button\" onclick=\"moreInfo('" + i + "')\">More Info</button>";
-                        text = text + "<br/>----------------------------------------------------------------"
+                        text = text + "<br/></div><br/>"
                     }
                     text = text + "</div>";
                     document.getElementById("restaurants").innerHTML = text;
@@ -59,6 +59,43 @@
                 displayRestaurants(); //called anytime items change
             });
         </script>
+        
+        <style>
+            button {
+                background-color:#44c767;
+                -moz-border-radius:28px;
+                -webkit-border-radius:28px;
+                border-radius:28px;
+                border:1px solid #18ab29;
+                display:inline-block;
+                cursor:pointer;
+                color:#ffffff;
+                font-family:Arial;
+                font-size:17px;
+                padding:16px 31px;
+                text-decoration:none;
+                text-shadow:0px 1px 0px #2f6627;
+            }
+            button:hover {
+                background-color:#5cbf2a;
+            }
+            button:active {
+                position:relative;
+                top:1px;
+            }
+            body {
+                background-color: #EAFDE6;
+            }
+            
+            .container {
+                color: black;
+                text-align: center;
+                border-radius: 25px;
+                padding: 20px;
+                
+            }
+
+        </style>
     </head>
     
     <body>
