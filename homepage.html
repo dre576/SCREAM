@@ -78,7 +78,7 @@
                     if (restaurant.Cost==$("#Cost").val() || "DefaultCost"==$("#Cost").val()) {                     
                         if (restaurant.Location==$("#Location").val() || "defaultVal"==$("#Location").val()) {
                             if (restaurant.Rating==$("#Rating").val()) {
-                               if (restaurant.WaitTime==$("#WaitTime").val()) {
+                               if (restaurant.WaitTime<=$("#WaitTime").val()) {
                                     searchResult.push(restaurant); //if all the criteria is met
                                     
                                     //pushes the restaurant onto the search result, which will be stored in
@@ -99,12 +99,11 @@
         //so that people could choose from the dropdowns and randomize from those choices
         //this still could be done here if we first call searchResults to get all the restaurants that
         //fit a certain description, however there are so few choices here it seems unecessary
+        //store these results in a dictionary then call them that way
+        //use a dictionary instead of for loop if extending
         function randomRestaurant(){
-            //TODO check this produces 1-length inclusive
+            
             var restId = Math.floor((Math.random() * result.length) + 1); //chooses a random restaurant ID
-            //if IDs are being assigned in a different way, would probably use a for loop
-            //to find the restaurant with the generated ID
-            //use a dictionary instead of for loop if extending
             var selected = result[restId-1]; //ids are 1 greater than their index in the results array
             $.jStorage.set("finalResult", selected); 
         }
