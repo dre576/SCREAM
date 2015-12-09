@@ -124,7 +124,6 @@
                 });
                 
                 $("#about").click(function(){
-                    randomRestaurant();
                     $(location).attr('href', 'aboutUs.html'); 
                 });
             });
@@ -141,7 +140,7 @@
                 height: 100%;
                 background:#EAFDE6;
             }
-            .col-sm-5,.col-sm-2{
+            .col-sm-5,.col-sm-2, .jumbotron{
                 padding:0;
                 margin:0;
                 top:0;
@@ -155,7 +154,7 @@
                 text-align: center;
             }
             .FirstColumn,.SecondColumn,.SecondColumnSlider,.ThirdColumn,.FirstColumnSlider,.FirstButtonPanel,.SecondButtonPanel{
-                background-color: lightgrey
+                background-color: lightgrey;
             }
             h4{
                 text-align: left;
@@ -175,7 +174,7 @@
                 -moz-border-radius:28px;
                 -webkit-border-radius:28px;
                 border-radius:28px;
-                border:1px solid #afb3b0;
+                border:1px solid #EAFDE6;
                 display:inline-block;
                 cursor:pointer;
                 color:#ffffff;
@@ -207,13 +206,14 @@
     
     <body>
     <div class="MainPage">
-        <div class="panel">
-            <div class='col-sm-5'></div>
-            <div class='col-sm-2'>
+        <div class='container-fluid'>
+            <div class='jumbotron'>
                 <h1>SCREAM!</h1>
             </div>
-            <div class='col-sm-5'></div>
-            <button id="about">About Us!</button>
+            <div class='col-sm-5'>
+                <button id="about">About Us!</button>
+            </div>
+            
         </div>
 
         <div class="container-fluid" id="DataArea">
